@@ -1,8 +1,14 @@
 class Player
-  def initialize
-    @image = Gosu::Image.new("media/ship1.png")
+  attr_reader :x, :y, :height, :width
+  def initialize(game_width, game_height)
+    @game_width = game_width
+    @game_height = game_height
+    @gfx_ship = Gosu::Image.new("media/ship1.png")
     @x = @y = @vel_x = @vel_y = @angle = 0.0
     @score = 0
+    @height = @gfx_ship.height
+    @width = @gfx_ship.width
+    @speed = 4
   end
 
   def warp(x, y)
@@ -10,19 +16,19 @@ class Player
   end
 
   def turn_left
-    @x <= 0 ? @x : @x -= 4
+    @x -= @speed unless @x <= 0
   end
 
   def turn_right
-    @x >= 391.5 ? @x : @x += 4
+    @x += @speed unless @x + (@width * 1.5) >= @game_width
   end
 
   def accelerate
-    @y <= 0 ? @y : @y -= 4
+    @y -= @speed unless @y <= 0
   end
 
   def reverse
-    @y >= 689.5 ? @y : @y += 4
+    @y += @speed unless @y + (@height * 1.5) >= @game_height
   end
 
   def move
@@ -36,6 +42,6 @@ class Player
   end
 
   def draw
-    @image.draw(@x, @y, 1, 1.5, 1.5)
+    @gfx_ship.draw(@x, @y, 1, 1.5, 1.5)
   end
 end

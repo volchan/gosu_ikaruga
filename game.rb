@@ -1,13 +1,17 @@
 require 'gosu'
+require 'pry-byebug'
 require_relative 'player'
 
 class Game < Gosu::Window
+  WIDTH = 480
+  HEIGHT = 760
   def initialize
-    super 480, 760
+    super WIDTH, HEIGHT
     self.caption = "Gosu Ikaruga"
     @background_image = Gosu::Image.new("media/ikaruga.jpg")
-    @player = Player.new
-    @player.warp(195.75, 650)
+    # binding.pry
+    @player = Player.new(WIDTH, HEIGHT)
+    @player.warp( WIDTH.fdiv(2) - (@player.width * 1.5).fdiv(2), HEIGHT - (@player.height * 1.5) )
   end
 
   def update
