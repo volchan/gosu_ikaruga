@@ -1,6 +1,7 @@
 require 'gosu'
 require 'pry-byebug'
 require_relative 'player'
+require_relative 'player_shots'
 
 class Game < Gosu::Window
   WIDTH = 480
@@ -11,7 +12,9 @@ class Game < Gosu::Window
     @background_image = Gosu::Image.new("media/ikaruga.jpg")
     # binding.pry
     @player = Player.new(WIDTH, HEIGHT)
-    @player.warp( WIDTH.fdiv(2) - (@player.width * 1.5).fdiv(2), HEIGHT - (@player.height * 1.5) )
+    @warp_width = WIDTH.fdiv(2) - (@player.width * @player.img_scale).fdiv(2)
+    @warp_height = HEIGHT - (@player.height * @player.img_scale)
+    @player.warp(@warp_width, @warp_height)
   end
 
   def update

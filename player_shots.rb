@@ -4,7 +4,7 @@ class PlayerShots
     @player = player
     @img_path = File.dirname(__FILE__) + 'media/player_shots.png'
     @img = Gosu::Image.new(@img_path)
-    @x = @player.x + @player.width / 2 - @img.width / 2
+    @x = @player.x + ((@player.width * 1.5).fdiv(2) - (@img.width * 1.5).fdiv(2))
     @y = @player.y
     @speed = 8.0
   end
