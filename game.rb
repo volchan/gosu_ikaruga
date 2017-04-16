@@ -30,12 +30,9 @@ class Game < Gosu::Window
     if Gosu.button_down? Gosu::KB_DOWN or Gosu::button_down? Gosu::GP_DOWN
       @player.reverse
     end
-    # if Gosu.button_down? Gosu::KB_SPACE or Gosu::button_down? Gosu::GP_BUTTON_0
-    # end
+    exit if Gosu.button_down? Gosu::KB_ESCAPE
     @player.new_shot
-    # binding.pry
     @player.fire
-    # @player.move
   end
 
   def draw

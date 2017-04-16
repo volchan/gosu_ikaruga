@@ -3,11 +3,11 @@ class PlayerShots
   def initialize(player)
     @player = player
     @img = Gosu::Image.new("media/player_shots.png")
-    @x_player_width = (@player.width * @player.scale).fdiv(2)
-    @x_img_width = (@img.width * @player.scale).fdiv(2)
-    @x = @player.x  + ( @x_player_width - @x_img_width )
+    @player_width = (@player.width * @player.scale).fdiv(2)
+    @img_width = @img.width.fdiv(2)
+    @x = @player.x  + ( @player_width - @img_width )
     @y = @player.y
-    @speed = 8.0
+    @speed = 10
   end
 
   def move

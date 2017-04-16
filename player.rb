@@ -5,18 +5,28 @@ class Player
     @game_height = game_height
     @gfx_ship = Gosu::Image.new("media/ship1.png")
     @x = @y = @vel_x = @vel_y = @angle = 0.0
-    @score = 0
     @height = @gfx_ship.height
     @width = @gfx_ship.width
     @speed = 4
     @scale = 1.5
     @shots = []
     @available_shots = 1
+    @prev_shot_time = 0
+  end
+
+  def loading_shots
+    @prev_shot_time = Gosu::milliseconds
+    PlayerShots.new(self)
+  end
+
+  def shot_elapsed
+    Gosu::milliseconds - @prev_shot_time
   end
 
   def new_shot
-    @shots << PlayerShots.new(self) if @available_shots >= 1
-    
+    if shot_elapsed > 120
+      @shots << loading_shots
+    end
   end
 
   def fire
