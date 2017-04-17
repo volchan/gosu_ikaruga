@@ -3,6 +3,7 @@ require 'pry-byebug'
 require_relative 'player'
 require_relative 'player_shots'
 
+# bla bla 
 class Game < Gosu::Window
   WIDTH = 480
   HEIGHT = 760
