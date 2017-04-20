@@ -1,4 +1,4 @@
-class Player
+class Ennemie
   attr_reader :x, :y, :height, :width, :scale, :available_shots, :shots
   def initialize(game_width, game_height)
     @game_width = game_width
@@ -16,7 +16,7 @@ class Player
 
   def loading_shots
     @prev_shot_time = Gosu::milliseconds
-    PlayerShots.new(self)
+    EnnemieShots.new(self)
   end
 
   def shot_elapsed
@@ -24,7 +24,7 @@ class Player
   end
 
   def new_shot
-    if shot_elapsed > 120
+    if shot_elapsed > 240
       @shots << loading_shots
     end
   end
@@ -38,22 +38,6 @@ class Player
 
   def warp(x, y)
     @x, @y = x, y
-  end
-
-  def turn_left
-    @x -= @speed unless @x <= 0
-  end
-
-  def turn_right
-    @x += @speed unless @x + (@width * @scale) >= @game_width
-  end
-
-  def accelerate
-    @y -= @speed unless @y <= 0
-  end
-
-  def reverse
-    @y += @speed unless @y + (@height * @scale) >= @game_height
   end
 
   def draw
