@@ -3,6 +3,7 @@ require 'pry-byebug'
 require_relative 'player'
 require_relative 'player_shots'
 require_relative 'ennemie'
+require_relative 'ennemie_shots'
 
 # bla bla
 class Game < Gosu::Window
@@ -25,7 +26,7 @@ class Game < Gosu::Window
     @ennemie_warp_height = 0 # HEIGHT - (@ennemie.height * @ennemie.scale)
     @ennemie.warp(@ennemie_warp_width, @ennemie_warp_height)
   end
-  
+
   def update
     if Gosu.button_down? Gosu::KB_LEFT or Gosu::button_down? Gosu::GP_LEFT
       @player.turn_left
@@ -43,7 +44,7 @@ class Game < Gosu::Window
     @player.new_shot
     @player.fire
     @ennemie.new_shot
-    # @ennemie.fire
+    @ennemie.fire
   end
 
   def draw

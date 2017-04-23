@@ -1,3 +1,4 @@
+require 'pry-byebug'
 class Ennemie
   attr_reader :x, :y, :height, :width, :scale, :available_shots, :shots
   def initialize(game_width, game_height)
@@ -16,6 +17,7 @@ class Ennemie
 
   def loading_shots
     @prev_shot_time = Gosu::milliseconds
+    # binding.pry
     EnnemieShots.new(self)
   end
 
@@ -41,6 +43,6 @@ class Ennemie
   end
 
   def draw
-    @gfx_ship.draw(@x, @y, 2, @scale, @scale)
+    @gfx_ship.draw_rot(@x, @y, 2, 180, 1, 1, @scale, @scale)
   end
 end
